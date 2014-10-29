@@ -1,0 +1,29 @@
+{
+  "name": "chestnut",
+  "private": true,
+  "title": "Job referral",
+  "version": "0.0.1",
+  "author": {
+    "name": "Michael Chang",
+    "email": "miccrun@gmail.com"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "grunt spec:unit spec:e2e"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "coffee-script": "^1.8.0",
+    "compression": "^1.2.0",
+    "express": "^4.10.1",
+    "method-override": "^2.3.0",
+    "morgan": "^1.4.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-jasmine-bundle": ">= 0.0.1",
+    "request": "^2.47.0",
+    "sandboxed-module": "^1.0.2"
+  }
+}
