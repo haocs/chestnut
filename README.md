@@ -1,5 +1,7 @@
 Job Referral
 =====
+##Requirements
+* Database: Mysql 5.6
 
 ##Install
 ```bash
