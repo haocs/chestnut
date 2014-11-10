@@ -18,7 +18,9 @@ class MySQLService
     @connection.query query, (err, rows, fields) ->
       cb err, rows, fields
 
-
+  insert: (query, set, cb) ->
+    @connection.query query, set, (err, result) ->
+      cb err, result
 module.exports = {
   MySQLService
 }
