@@ -18,3 +18,15 @@ describe "POST /session", ->
   When (done) -> POST "/session", data, done, (err, res) =>
     @result = res
   Then -> @result.statusCode == 200
+
+describe "GET msg by session", ->
+  When (done) -> GET "/session/1/m", done, (err, res) =>
+    @result = res
+  Then -> @result.statusCode == 200
+  And -> @result.body == 'OK'
+
+describe "GET msg by session and msg_id", ->
+  When (done) -> GET "/session/1/m/2", done, (err, res) =>
+    @result = res
+  Then -> @result.statusCode == 200
+  And -> @result.body == 'OK'
