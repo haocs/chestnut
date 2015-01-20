@@ -20,12 +20,6 @@ class Chestnut
         res.status(200).json rows
 
   createSession: (req, res) =>
-    # is valid request?
-    #
-    # yes.
-    # trive req info:
-    # no.
-    # err.
     if req.body? && req.body.referer_id? && req.body.referral_id?
       session_hash =
         referer_id: req.body.referer_id
@@ -41,6 +35,19 @@ class Chestnut
       invalid_req_err =
           code: "INVALID_REQUEST_ERROR"
       res.status(500).json invalid_req_err
+
+  getMessagesBySession: (req, res) ->
+    res.type 'text'
+    res.send 'OK'
+
+  getMessageByMsgId: (req, res) ->
+    res.type 'text'
+    res.send 'OK'
+
+  insertMessageToSession: (req, res) ->
+    res.type 'text'
+    res.send 'OK'
+
 
 module.exports = {
   Chestnut
