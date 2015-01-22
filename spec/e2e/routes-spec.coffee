@@ -19,14 +19,22 @@ describe "POST /session", ->
     @result = res
   Then -> @result.statusCode == 200
 
-describe "GET msg by session", ->
+describe "GET /seesion/1/m", ->
   When (done) -> GET "/session/1/m", done, (err, res) =>
     @result = res
   Then -> @result.statusCode == 200
-  And -> @result.body == 'OK'
 
-describe "GET msg by session and msg_id", ->
+describe "GET /session/1/m/2", ->
   When (done) -> GET "/session/1/m/2", done, (err, res) =>
     @result = res
   Then -> @result.statusCode == 200
   And -> @result.body == 'OK'
+
+describe "POST /session/1/m", ->
+  request_data =
+    sender_uid: 2
+    receiver_uid: 1
+    content: "Hey, I am testing this insert message function."
+  When (done) -> POST "/session/1/m", request_data,  done, (err, res) =>
+    @result = res
+  Then -> @result.statusCode == 200

@@ -36,17 +36,36 @@ class Chestnut
           code: "INVALID_REQUEST_ERROR"
       res.status(500).json invalid_req_err
 
-  getMessagesBySession: (req, res) ->
-    res.type 'text'
-    res.send 'OK'
+  getMessagesBySession: (req, res) =>
+    sessionId = req.params.sessionid
+    @db.query "SELECT * from Messages WHERE session_id=#{sessionId}", (err, rows) ->
+      if err?
+        res.status(500).json err
+      else
+        res.status(200).json rows
 
   getMessageByMsgId: (req, res) ->
     res.type 'text'
     res.send 'OK'
 
-  insertMessageToSession: (req, res) ->
-    res.type 'text'
-    res.send 'OK'
+  insertMessageToSession: (req, res) =>
+    if req.body? && req.body.sender_uid? && req.body.receiver_uid?
+      msg_hash =
+        session_id: req.params.sessionid
+        sender_uid: req.body.sender_uid
+        receiver_uid: req.body.receiver_uid
+        content: req.body.content
+      @db.insert "INSERT INTO `Messages` SET ?",
+          msg_hash,
+          (err, db_result) ->
+            if err?
+              res.status(500).json err
+            else
+              res.status(200).json db_result.insertId
+    else
+      invalid_req_err =
+          code: "INVALID_REQUEST_ERROR"
+      res.status(500).json invalid_req_err
 
 
 module.exports = {
