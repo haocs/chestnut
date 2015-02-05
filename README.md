@@ -20,3 +20,7 @@ npm test
 
 ##Configuration
 TODO
+
+##Database Migrate(manually)
+* Drop current db and create new one
+* Source 'extend_for_linkedin_db.sql' in /scripts/
